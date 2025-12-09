@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Dr. Prakash Rao Ragiri | Academic Profile & Animated AI Agent</title>
+<script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs'></script>
+<script src='https://cdn.jsdelivr.net/npm/@teachablemachine/image'></script>
+<style>
+:root { --primary:#003366; --accent:#0056b3; --text-main:#333; --text-light:#666; --bg-light:#f9f9f9; --white:#fff; --chat-bg:#f0f2f5; }
+body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; margin:0; background:var(--bg-light); color:var(--text-main); }
+header { background:linear-gradient(135deg,#003366 0%,#002244 100%); color:var(--white); text-align:center; padding:50px 20px; }
+.profile-img { width:160px; height:160px; border-radius:50%; border:5px solid rgba(255,255,255,0.3); object-fit:cover; margin-bottom:20px; }
+nav { background:#fff; text-align:center; padding:15px 0; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:sticky; top:0; }
+nav a { color:var(--primary); margin:0 15px; text-decoration:none; font-weight:600; }
+.container { max-width:900px; margin:40px auto; padding:0 20px; }
+section { background:var(--white); padding:30px; margin-bottom:30px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+footer { text-align:center; padding:30px; color:var(--text-light); border-top:1px solid #ddd; }
+.ai-widget-btn { position:fixed; bottom:30px; right:30px; width:60px; height:60px; background:var(--accent); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.ai-icon { width:30px; height:30px; fill:white; }
+.chat-window { display:none; position:fixed; bottom:100px; right:30px; width:350px; height:600px; background:white; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.2); flex-direction:column; overflow:hidden; }
+.chat-header { background:var(--primary); color:white; padding:15px; display:flex; justify-content:space-between; align-items:center; }
+.chat-body { flex:1; padding:15px; overflow-y:auto; background:var(--chat-bg); display:flex; flex-direction:column; gap:10px; }
+.message { max-width:80%; padding:10px; border-radius:10px; font-size:0.9rem; }
+.bot-message { background:white; align-self:flex-start; }
+.user-message { background:var(--accent); color:white; align-self:flex-end; }
+.chat-options { padding:10px; background:white; border-top:1px solid #eee; display:flex; gap:5px; flex-wrap:wrap; }
+.option-btn, .voice-btn { background:#eef2f5; border:1px solid #ddd; padding:8px 12px; border-radius:20px; cursor:pointer; }
+.voice-btn { background:#0056b3; color:white; }
+.chart-container { width:100%; background:white; padding:5px; border-radius:8px; margin-top:5px; }
+.webcam-container { text-align:center; margin-top:10px; }
+.avatar { width:60px; height:60px; border-radius:50%; background:#0056b3; margin:10px auto; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { transform: scale(1); background:#0056b3;} 50% { transform: scale(1.2); background:#007bff;} 100% { transform: scale(1); background:#0056b3;} }
+</style>
+</head>
+<body>
+<header>
+<img src='UploadedImage0.jpg' alt='Profile Image' class='profile-img'>
+<h1>Dr. Prakash Rao Ragiri</h1>
+<p>Assistant Professor, Dept. of Computer Science & Engineering</p>
+<p>Netaji Subhas University of Technology (NSUT), East Campus</p>
+<div class='social-icons'>
+<a href='https://scholar.google.com/citations?user=-w8yRGcAAAAJ&hl=en' target='_blank'>Google Scholar</a>
+<a href='https://www.linkedin.com' target='_blank'>LinkedIn</a>
+</div>
+<a href='#' class='download-btn'>Download CV</a>
+</header>
+<nav>
+<a href='#about'>About</a><a href='#publications'>Publications</a><a href='#research'>Research Areas</a><a href='#achievements'>Achievements</a><a href='#contact'>Contact</a>
+</nav>
+<div class='container'>
+<section id='about'><h2>About Me</h2><p>Ph.D. in Computer Science & Technology (JNU). Over 19 years of teaching experience and prior industry work at CDAC Noida. Research interests include Intelligent Computing, IoT Security, Graph Convolution Networks, and AI-driven Transportation Systems.</p></section>
+<section id='publications'><h2>Selected Publications</h2><ul><li>Machine Learning-based Predictive Models for Early Diagnosis of Liver Disease (2025)</li><li>Traffic Congestion Prediction Using Graph Convolution Networks (2024)</li><li>A Deep Learning Approach to Enhance Air Quality Prediction (2024)</li></ul></section>
+<section id='research'><h2>Research Domains</h2><p>Internet of Vehicles, IoT Security, Graph Convolution Networks, Intelligent Transportation, Responsible Research.</p></section>
+<section id='achievements'><h2>Awards & Achievements</h2><ul><li>Mentor for Smart India Hackathon</li><li>Ph.D. from JNU in Intelligent Computing & Security</li><li>19+ years of academic experience</li></ul></section>
+<section id='contact'><h2>Contact</h2><p>Email: prakashrao.ragiri@nsut.ac.in</p></section>
+</div>
+<footer><p>&copy; 2025 Dr. Prakash Rao Ragiri. All Rights Reserved.</p></footer>
+<div class='ai-widget-btn' onclick='toggleChat()'><svg class='ai-icon' viewBox='0 0 24 24'><path d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z'/></svg></div>
+<div class='chat-window' id='chatWindow'>
+<div class='chat-header'><h4>AI Assistant</h4><span class='close-chat' onclick='toggleChat()'>×</span></div>
+<div class='avatar'></div>
+<div class='chat-body' id='chatBody'><div class='message bot-message'>Hello! Ask me about research, publications, or use voice input.</div></div>
+<div class='webcam-container'>
+<video id='webcam' autoplay playsinline width='320' height='240'></video>
+<button onclick='initWebcamModel()'>Start Webcam Model</button>
+</div>
+<div class='chat-options'>
+<button class='option-btn' onclick='generateGraph()'>Citation Graph</button>
+<button class='option-btn' onclick='showPhoto()'>Show Photo</button>
+<button class='option-btn' onclick='faqResearch()'>Research Areas</button>
+<button class='option-btn' onclick='faqPublications()'>Publications</button>
+<button class='voice-btn' onclick='startVoiceInput()'>🎤 Speak</button>
+</div>
+</div>
+<script>
+let webcam, model;
+async function initWebcamModel(){const URL='YOUR_TEACHABLE_MACHINE_IMAGE_MODEL_URL';model=await tmImage.load(URL+'model.json',URL+'metadata.json');webcam=new tmImage.Webcam(320,240,true);await webcam.setup();await webcam.play();document.getElementById('webcam').srcObject=webcam.webcam.stream;window.requestAnimationFrame(loop);}async function loop(){webcam.update();const prediction=await model.predict(webcam.canvas);if(prediction&&prediction.length>0){addBotMessage('Detected: '+prediction[0].className+' ('+Math.round(prediction[0].probability*100)+'%)');}window.requestAnimationFrame(loop);}
+function toggleChat(){const w=document.getElementById('chatWindow');w.style.display=w.style.display==='flex'?'none':'flex';}
+function addUserMessage(t){const b=document.getElementById('chatBody');const d=document.createElement('div');d.className='message user-message';d.innerText=t;b.appendChild(d);b.scrollTop=b.scrollHeight;}
+function addBotMessage(c,h=false){const b=document.getElementById('chatBody');const d=document.createElement('div');d.className='message bot-message';if(h){d.innerHTML=c;}else{d.innerText=c;}b.appendChild(d);b.scrollTop=b.scrollHeight;speakText(c);}
+function generateGraph(){addUserMessage('Generate Citation Graph');const id='citeChart'+Date.now();addBotMessage(`<p>Citation analysis:</p><div class='chart-container'><canvas id='${id}'></canvas></div>`,true);setTimeout(()=>{const ctx=document.getElementById(id).getContext('2d');new Chart(ctx,{type:'bar',data:{labels:['IoT Security','RPL','Liver Disease','Traffic GCN'],datasets:[{label:'Citations',data:[169,45,12,8],backgroundColor:['rgba(0,51,102,0.8)','rgba(0,86,179,0.7)','rgba(0,123,255,0.6)','rgba(102,163,255,0.5)']}]} });},100);}
+function showPhoto(){addUserMessage('Show Profile Photo');addBotMessage('<img src="UploadedImage0.jpg" style="width:100%;border-radius:8px;margin-top:5px;">',true);}
+function faqResearch(){addUserMessage('Research Areas');addBotMessage('Internet of Vehicles, IoT Security, Graph Convolution Networks, Intelligent Transportation, Responsible Research.');}
+function faqPublications(){addUserMessage('Publications');addBotMessage('Recent works: Liver Disease ML (2025), Traffic GCN (2024), Air Quality Prediction (2024).');}
+function startVoiceInput(){const rec=new(window.SpeechRecognition||window.webkitSpeechRecognition)();rec.lang='en-US';rec.start();rec.onresult=function(e){const t=e.results[0][0].transcript;handleVoiceCommand(t);};}
+function handleVoiceCommand(cmd){cmd=cmd.toLowerCase();if(cmd.includes('graph')){generateGraph();}else if(cmd.includes('photo')){showPhoto();}else if(cmd.includes('research')){faqResearch();}else if(cmd.includes('publication')){faqPublications();}else{addBotMessage('I can show graphs, photo, research areas, or publications.');}}
+function speakText(text){const utter=new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g,''));utter.lang='en-US';speechSynthesis.speak(utter);}
+</script>
+</body>
+</html>
